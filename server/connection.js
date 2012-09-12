@@ -5,7 +5,7 @@ exports.connect = function(_port) {
 	io.sockets.on('connection', function(_socket) {
 		isConn = true;
 		socket = _socket;
-		socket.send("请输入你的名字->");
+		socket.emit('message',{'type':'login','data':'请输入你的名字->'});
 		socket.on('disconnect', function() {
 			isConn = false;
 			//下线.
@@ -14,7 +14,7 @@ exports.connect = function(_port) {
 };
 
 exports.sendMsg = function(_msg) {
-	if (isConn) socket.send(_msg);
+	if (isConn) socket.emit('message',_msg);
 	else console.log('网络断开');
 };
 
@@ -27,5 +27,4 @@ exports.getMsg = function(_fn) {
 	if (isConn) socket.on('message', function(_data) {
 		_fn(socket.id, _data);
 	});
-	else console.log('网络断开');
 };

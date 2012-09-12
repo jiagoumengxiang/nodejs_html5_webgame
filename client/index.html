@@ -7,60 +7,86 @@
 	<body>
 		<script type="text/javascript">
 			//显示消息
-			function println(_msg){
-				var console= document.getElementById("consoleDiv");
-				var msg=_msg.replace("\n","<br/>");
-				console.innerHTML+=(_msg+"<br/>");
+			function println(_msg) {
+				var console = document.getElementById("consoleDiv");
+				var msg = _msg.replace("\n", "<br/>");
+				console.innerHTML += (_msg + "<br/>");
 			}
 			//按钮单击事件
-			function btnClick(){
-				var input=document.getElementById("inputTxt");
-				println(input.value);
 
+
+			function btnClick() {
+				var input = document.getElementById("inputTxt");
+				println(input.value);
+				sendMsg(input.value);
 				input.focus();
-				input.value="";
+				input.value = "";
 			}
 			//加载运行窗口
-			function InitConsole(){
-				document.body.style.backgroundColor="#888888";
 
-				var consoleDiv=document.createElement("div");
-				consoleDiv.style.backgroundColor="#000";
-				consoleDiv.style.color="#FFF";
-				consoleDiv.style.width="800px";
-				consoleDiv.style.height="600px";
-				consoleDiv.style.margin="0 auto";
-				consoleDiv.id="consoleDiv";
+
+			function InitConsole() {
+				document.body.style.backgroundColor = "#888888";
+
+				var consoleDiv = document.createElement("div");
+				consoleDiv.style.backgroundColor = "#000";
+				consoleDiv.style.color = "#FFF";
+				consoleDiv.style.width = "800px";
+				consoleDiv.style.height = "600px";
+				consoleDiv.style.margin = "0 auto";
+				consoleDiv.id = "consoleDiv";
 				document.body.appendChild(consoleDiv);
 
-				var inputDiv=document.createElement("div");
-				inputDiv.style.margin="0 auto";
-				inputDiv.style.width="800px";
+				var inputDiv = document.createElement("div");
+				inputDiv.style.margin = "0 auto";
+				inputDiv.style.width = "800px";
 
-				var textBox=document.createElement("input");
-				textBox.type="text";
-				textBox.id="inputTxt";
-				textBox.style.width="696px";
+				var textBox = document.createElement("input");
+				textBox.type = "text";
+				textBox.id = "inputTxt";
+				textBox.style.width = "696px";
 
-				var btn=document.createElement("input");
-				btn.type="button";
-				btn.style.width="100px";
-				btn.value="确定";
-				btn.accessKey="q";
-				btn.onclick=btnClick;
+				var btn = document.createElement("input");
+				btn.type = "button";
+				btn.style.width = "100px";
+				btn.value = "确定";
+				btn.accessKey = "q";
+				btn.onclick = btnClick;
 
 				inputDiv.appendChild(textBox);
 				inputDiv.appendChild(btn);
 				document.body.appendChild(inputDiv);
 			}
 			InitConsole();
-///////////////////////////////////////////////////////////////////////////////////////////////////
+			///////////////////////////////////////////////////////////////////////////////////////////////////
+			var socket,msgType;
+			//发送消息
+			function sendMsg(_data){
+				socket.emit('message',{type:msgType,data:_data});
+			}
+			//处理登陆
+			function login(_data) {
+				println(_data);
+				msgType=_data.type;
+			}
+
+			function msg(_id, _data) {
+
+			}
 			//应用程序入口
 			function Main() {
-				var socket = io.connect('http://localhost:8889');
+				socket = io.connect('http://localhost:8889');
 				socket.on('connect', function() {
-					socket.on('message', function(msg) {
-						println(msg);
+					socket.on('message', function(_data) {
+						switch (_data.type) {
+						case 'login':
+							login(_data.data);
+							break;
+						case 'msg':
+							break;
+						default:
+							console.log("其他未处理消息.");
+						}
 					});
 				});
 			}
