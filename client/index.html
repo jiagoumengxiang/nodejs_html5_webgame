@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>html5测试页面</title>
+		<script type="text/javascript" src="socket.io.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//显示消息
+			function println(_msg){
+				var console= document.getElementById("consoleDiv");
+				var msg=_msg.replace("\n","<br/>");
+				console.innerHTML+=(_msg+"<br/>");
+			}
+			//按钮单击事件
+			function btnClick(){
+				var input=document.getElementById("inputTxt");
+				println(input.value);
+
+				input.focus();
+				input.value="";
+			}
+			//加载运行窗口
+			function InitConsole(){
+				document.body.style.backgroundColor="#888888";
+
+				var consoleDiv=document.createElement("div");
+				consoleDiv.style.backgroundColor="#000";
+				consoleDiv.style.color="#FFF";
+				consoleDiv.style.width="800px";
+				consoleDiv.style.height="600px";
+				consoleDiv.style.margin="0 auto";
+				consoleDiv.id="consoleDiv";
+				document.body.appendChild(consoleDiv);
+
+				var inputDiv=document.createElement("div");
+				inputDiv.style.margin="0 auto";
+				inputDiv.style.width="800px";
+
+				var textBox=document.createElement("input");
+				textBox.type="text";
+				textBox.id="inputTxt";
+				textBox.style.width="696px";
+
+				var btn=document.createElement("input");
+				btn.type="button";
+				btn.style.width="100px";
+				btn.value="确定";
+				btn.accessKey="q";
+				btn.onclick=btnClick;
+
+				inputDiv.appendChild(textBox);
+				inputDiv.appendChild(btn);
+				document.body.appendChild(inputDiv);
+			}
+			InitConsole();
+///////////////////////////////////////////////////////////////////////////////////////////////////
+			//应用程序入口
+			function Main() {
+				var socket = io.connect('http://localhost:8889');
+				socket.on('connect', function() {
+					socket.on('message', function(msg) {
+						println(msg);
+					});
+				});
+			}
+			Main();
+		</script>
+	</body>
+</html>
