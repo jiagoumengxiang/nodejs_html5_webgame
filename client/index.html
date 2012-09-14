@@ -64,28 +64,16 @@
 			function sendMsg(_data){
 				socket.emit('message',{type:msgType,data:_data});
 			}
-			//处理登陆
-			function login(_data) {
-				println(_data);
-				msgType=_data.type;
-			}
-
-			function msg(_id, _data) {
-
-			}
 			//应用程序入口
 			function Main() {
 				socket = io.connect('http://localhost:8889');
 				socket.on('connect', function() {
 					socket.on('message', function(_data) {
-						switch (_data.type) {
-						case 'login':
-							login(_data.data);
-							break;
-						case 'msg':
-							break;
-						default:
-							console.log("其他未处理消息.");
+						if (_data.type === "broad") {
+							println("系统->" + _data.data);
+						} else {
+							msgType = _data.type;
+							println(_data.data);
 						}
 					});
 				});
