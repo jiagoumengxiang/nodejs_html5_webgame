@@ -7,7 +7,7 @@ conn.connect(8889);
 function login(_id, _data) {
 	if (gameEvent.login(_id, _data)) {
 		conn.emitMsg({
-			'type': 'login',
+			'type': 'broad',
 			'data': (_data + '上线了.')
 		});
 		conn.sendMsg({

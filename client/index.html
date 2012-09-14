@@ -64,6 +64,7 @@
 			function sendMsg(_data){
 				socket.emit('message',{type:msgType,data:_data});
 			}
+			
 			//应用程序入口
 			function Main() {
 				socket = io.connect('http://localhost:8889');

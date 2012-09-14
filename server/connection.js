@@ -34,6 +34,7 @@ exports.emitMsg = function(_msg) {
 exports.getMsg = function(_fn) {
 	fn=_fn;
 };
+
 exports.clientExit=function(_fn){
 	fn_exit=_fn;
 };

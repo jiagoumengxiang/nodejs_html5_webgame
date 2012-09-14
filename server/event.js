@@ -17,7 +17,7 @@ exports.loginOut=function(_id){
 exports.getUsers=function(){
 	var rtnVal="";
 	for(var i in users){
-		rtnVal+=(","+i+users[i].name);
+		rtnVal+=(","+i+":"+users[i].name);
 	}
 	return rtnVal.substring(1);
 };
