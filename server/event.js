@@ -5,6 +5,7 @@ exports.login=function(_id,_name){
 	console.log(users);
 	return true;
 };
+
 exports.loginOut=function(_id){
 	//找出id相同的人去掉
 	for(var i in users){
@@ -14,10 +15,11 @@ exports.loginOut=function(_id){
 		}
 	}
 };
+
 exports.getUsers=function(){
 	var rtnVal="";
 	for(var i in users){
-		rtnVal+=(","+i+":"+users[i].name);
+		rtnVal+=(","+(parseInt(i,10)+1)+":"+users[i].name);
 	}
 	return rtnVal.substring(1);
 };
