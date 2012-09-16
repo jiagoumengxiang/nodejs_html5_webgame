@@ -1,6 +1,5 @@
-var fn=null,fn_exit=null;
-exports.connect = function(_port) {
 
+exports.connect = function(_port) {
 	var io = require('socket.io').listen(_port);
 	io.sockets.on('connection', function(_socket) {
 		_socket.emit('message',{'type':'login','data':'请输入你的名字->'});
@@ -18,12 +17,4 @@ exports.connect = function(_port) {
 			fn_exit(_socket.id);
 		});
 	});
-};
-
-exports.getMsg = function(_fn) {
-	fn=_fn;
-};
-
-exports.clientExit=function(_fn){
-	fn_exit=_fn;
 };
