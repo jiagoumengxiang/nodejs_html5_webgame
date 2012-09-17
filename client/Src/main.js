@@ -16,17 +16,7 @@ function MAIN() {
 	};
 
 	//绘制
-	
-
-
+	GameEngin.InitEngin();
 	//事件处理
-
-
-
-
-
-
-
-
-
+	
 }
