@@ -71,15 +71,13 @@
 			
 			//应用程序入口
 			function Main() {
-				socket = io.connect('http://localhost:8889');
+				socket = io.connect('http://localhost:9005');
 				socket.on('connect', function() {
-					socket.on('message', function(_data) {
-						if (_data.type === "broad") {
-							println("系统->" + _data.data);
-						} else {
-							msgType = _data.type;
-							println(_data.data);
-						}
+					socket.on('loginInit', function(_data) {
+						socket.emit("login","aaaa");
+					});
+					socket.on("login",function(_data){
+						alert(_data);
 					});
 				});
 			}
