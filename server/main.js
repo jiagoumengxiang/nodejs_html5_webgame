@@ -1,13 +1,4 @@
-var userStorage=require("./gameObj/UserStorage.js");
+var conn = require("./gameObj/Connection.js");
+var IO =  require('socket.io').listen("9000");
 
-var userStorage=require("./gameObj/UerStorage.js");
-var conn=require("./gameObj/Connection.js");
-
-
-
-
-
-
-
-
-
+conn.connect(IO);

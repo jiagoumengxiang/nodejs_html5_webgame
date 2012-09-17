@@ -1,20 +1,21 @@
+var userStorage=require("./UserStorage.js");
+var userObj=require("./User.js");
 
-exports.connect = function(_port) {
-	var io = require('socket.io').listen(_port);
+exports.connect = function(io){
 	io.sockets.on('connection', function(_socket) {
-		_socket.emit('message',{'type':'login','data':'请输入你的名字->'});
-		_socket.on("message",function(_data){
-			console.log(_data);
-			if(fn!==null){
-				fn(_socket,_data);
-			}else{
-				console.log("message获取异常,fn为null");
-			}
+		_socket.on("login",function(_data){
+			//检查用户名密码
+
+			//实例化用户加入storage
+			var user= new userObj.User(_data.username,_socket);
+			userStorage.UserLogin(user);
+			_sock.emit("login","success");
 		});
 		_socket.on('disconnect', function() {
 			//下线.
 			console.log("客户端已退出");
-			fn_exit(_socket.id);
 		});
 	});
 };
+
+

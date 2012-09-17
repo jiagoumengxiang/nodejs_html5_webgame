@@ -1,9 +1,7 @@
 var Storage=[];
 
-
-
-exports.UserLogin=function(_socket){
-	Storage.push(_socket);
+exports.UserLogin=function(_user){
+	Storage.push(_user);
 };
 
 exports.GetUser=function(_id){
@@ -13,3 +11,5 @@ exports.GetUser=function(_id){
 		}
 	}
 };
+
+
