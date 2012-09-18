@@ -12,7 +12,7 @@ GameScene.Hall = function() {
 		_C.fillText(a, 480, 400);
 		_C.fillText(b,580, 400);
 	};
-	this.Logic = function() {
+	this.Logic = function(){
 		a=INPUT.X+"//"+INPUT.Y;
 		if(INPUT.KEY!=="0"){
 			b="你按下了 "+INPUT.KEY;
@@ -20,11 +20,11 @@ GameScene.Hall = function() {
 	};
 };
 //准备
-GameScene.Ready = function() {
+GameScene.Ready = function(){
 	this.Init = function() {
 
 	};
-	this.Draw = function(_C) {
+	this.Draw = function(_C){
 		_C.fillStyle = "#FF0000";
 		_C.fillRect(0, 0, 150, 75);
 	};
