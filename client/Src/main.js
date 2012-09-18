@@ -1,5 +1,5 @@
 function MAIN() {
-	
+
 	//网络连接
 	//登陆->显示登陆窗体,处理登陆请求
 	document.getElementById("login").style.display = "block";
@@ -12,11 +12,12 @@ function MAIN() {
 			alert("登陆成功");
 			document.getElementById("login").style.display = "none";
 			document.getElementById("game").style.display = "block";
+			//绘制初始化
+			GameEngin.InitEngin();
+			//事件处理
+
+			//开始游戏
+			GameEngin.GameProcess();
 		});
 	};
-
-	//绘制
-	GameEngin.InitEngin();
-	//事件处理
-	
 }

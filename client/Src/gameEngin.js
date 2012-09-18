@@ -1,19 +1,16 @@
 /*
 游戏功能
 */
-var GameEngin={};
-GameEngin.InitEngin=function(){
-	var canvas=document.geetElementById("canvas");
-	this.CTX=canvas.getContext("2d");
+var GameEngin = {};
+GameEngin.InitEngin = function() {
+	var canvas = document.getElementById("canvas");
+	this.CTX = canvas.getContext("2d");
+	this.GameStage = new Stage(GameEngin.CTX, 30);
+	//大厅 id:0
+	this.GameStage.ChangeScene(new GameScene.Hall());
 };
 
-//大厅
-
-//房间
-
-//游戏中
-
-//游戏结果
-
-
-
+//游戏进行过程
+GameEngin.GameProcess = function() {
+	this.GameStage.Start();
+};

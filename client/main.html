@@ -64,11 +64,11 @@
 		<script type="text/javascript"></script>
 		<script type="text/javascript"></script>
 		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
-		<script type="text/javascript"></script>
+		<script type="text/javascript" src="Src/Event.js"></script>
+		<script type="text/javascript" src="Src/GameScene.js"></script>
+		<script type="text/javascript" src="Src/Sprite.js"></script>
+		<script type="text/javascript" src="Src/Scene.js"></script>
+		<script type="text/javascript" src="Src/gameEngin.js"></script>
 		<script type="text/javascript" src="Src/Connection.js"></script>
 		<script type="text/javascript" src="Src/main.js"></script>
 	</head>
@@ -87,8 +87,8 @@
 			</ul> 
 		</div>
 
-		<div id="game">
-			<canvas id="canvas" width="800px" height="600px"></canvas>
+		<div id="game" onkeydown="ONKEYDOWN();" onkeyup="ONKEYUP();">
+			<canvas id="canvas" width="800px" height="600px"  onclick="ONCLICK();" onmouseout="ONMOUSEOUT();" onmousemove="ONMOUSEMOVE();"></canvas>
 		</div>
 	</body>
 </html>
