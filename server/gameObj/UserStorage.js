@@ -12,4 +12,9 @@ exports.GetUser=function(_id){
 	}
 };
 
-
+exports.GetUserList=function(){
+	var rtnVal="";
+	for(var i in Storage){
+		rtnVal+=(Storage[i].data.uName);
+	}
+};

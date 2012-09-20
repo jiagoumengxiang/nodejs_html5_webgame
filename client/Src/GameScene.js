@@ -5,6 +5,9 @@ GameScene.Hall = function() {
 	var b="";
 	this.Init = function() {
 		a="wdfjasf";
+		CONNECTION.setMessage(function(_data){
+			a=_data;
+		});
 	};
 	this.Draw = function(_C) {
 		_C.fillStyle = "#FF0000";
@@ -16,6 +19,7 @@ GameScene.Hall = function() {
 		a=INPUT.X+"//"+INPUT.Y;
 		if(INPUT.KEY!=="0"){
 			b="你按下了 "+INPUT.KEY;
+			CONNECTION.sync({type:'list'});
 		}
 	};
 };

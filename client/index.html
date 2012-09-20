@@ -9,7 +9,7 @@
 			//显示消息
 			function println(_msg) {
 				var console = document.getElementById("consoleDiv");
-				var msg = _msg.replace("\n", "<br/>");
+				//var msg = _msg.replace("\n", "<br/>");
 				console.innerHTML += (_msg + "<br/>");
 			}
 			//按钮单击事件
@@ -82,7 +82,19 @@
 				});
 			}
 			//Main();
+//////////////////////////////////////////////////////////////////
+			var worker;
+			function GO(){
+				worker=new Worker("Src/ConnWorker.js");
+				worker.onmessage=function(event){
+					println(event.data);
+				};
+			}
+			function sendMsg(_data){
+				worker.postMessage(_data);
+			}
 		</script>
 		<a href="main.html">main</a>
+		<a onclick="GO()">testFUN</a>
 	</body>
 </html>

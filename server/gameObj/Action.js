@@ -1,25 +1,33 @@
-var users=[];
+/*
+1.解析connection来的json
 
-exports.login=function(_id,_name){
-	users.push({'id':_id,'name':_name});
-	console.log(users);
-	return true;
-};
+2.将返回数据反馈给connection
+*/
 
-exports.loginOut=function(_id){
-	//找出id相同的人去掉
-	for(var i in users){
-		if(users[i].id===_id){
-			users.splice(i,1);
-			break;
-		}
+var userStorage = require("./UserStorage.js");
+var userObj = require("./User.js");
+
+exports.CallAction = function(_data) {
+	var RTNVAL={};
+	switch (_data.type) {
+	case "login":
+		//检查用户名密码
+		//实例化用户加入storage
+		var user = new userObj.User(_data, _socket);
+		userStorage.UserLogin(user);
+		_socket.emit("message", "success");
+		break;
+	case "list":
+		//返回用户列表
+		_socket.emit("message", userStorage.GetUserList());
+		break;
+	default:
 	}
+
+	return JSON.stringify(RTNVAL);
 };
 
-exports.getUsers=function(){
-	var rtnVal="";
-	for(var i in users){
-		rtnVal+=(","+(parseInt(i,10)+1)+":"+users[i].name);
-	}
-	return rtnVal.substring(1);
-};
+
+
+
+
