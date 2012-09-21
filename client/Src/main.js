@@ -8,16 +8,22 @@ function MAIN() {
 		var userName = document.getElementById("username").value;
 		//密码
 		/////////////
-		CONNECTION.connect(userName, "123456", function() {
+		CONNECTION.getMsg(function() {
 			alert("登陆成功");
 			document.getElementById("login").style.display = "none";
 			document.getElementById("game").style.display = "block";
 			//绘制初始化
 			GameEngin.InitEngin();
 			//事件处理
-
 			//开始游戏
 			GameEngin.GameProcess();
+		});
+		CONNECTION.sendMsg({
+			type: "login",
+			data: {
+				name: userName,
+				password: "123456"
+			}
 		});
 	};
 }

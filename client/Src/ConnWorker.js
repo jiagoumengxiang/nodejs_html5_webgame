@@ -14,6 +14,7 @@ var message = "";
 socket = socket.on('connect', function() {
 	socket.on('message', function(_data) {
 		postMessage(_data); //将获取到的数据发送会主线程
+		message="";
 	});
 });
 
@@ -30,3 +31,7 @@ var sync = function() {
 	setTimeout(sync,'500');
 };
 sync();
+
+
+
+

@@ -5,8 +5,8 @@ GameScene.Hall = function() {
 	var b="";
 	this.Init = function() {
 		a="wdfjasf";
-		CONNECTION.setMessage(function(_data){
-			a=_data;
+		CONNECTION.getMsg(function(_data){
+			a=JSON.stringify(_data);
 		});
 	};
 	this.Draw = function(_C) {
@@ -16,10 +16,10 @@ GameScene.Hall = function() {
 		_C.fillText(b,580, 400);
 	};
 	this.Logic = function(){
-		a=INPUT.X+"//"+INPUT.Y;
+		//a=INPUT.X+"//"+INPUT.Y;
 		if(INPUT.KEY!=="0"){
 			b="你按下了 "+INPUT.KEY;
-			CONNECTION.sync({type:'list'});
+			CONNECTION.sendMsg({type:'userlist'});
 		}
 	};
 };

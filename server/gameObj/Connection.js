@@ -5,7 +5,7 @@ exports.connect = function(io) {
 		console.log("connection 启动...........");
 		_socket.on("message", function(_data) {
 			console.log(_data);
-			_socket.send(gameAction.CallAcrion(JSON.parse(_data)));
+			_socket.emit("message",gameAction.CallAction(JSON.parse(_data),_socket));
 		});
 		_socket.on('disconnect', function() {
 			//下线.
