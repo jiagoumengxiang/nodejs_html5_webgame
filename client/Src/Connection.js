@@ -22,3 +22,7 @@ CONNECTION.sendMsg = function(_data) {
 CONNECTION.getMsg = function(_fn) {
 	CONNECTION.onmessage = _fn;
 };
+
+
+
+
