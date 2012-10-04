@@ -12,5 +12,11 @@ GameEngin.InitEngin = function() {
 
 //游戏进行过程
 GameEngin.GameProcess = function() {
+    //同步时间
+    var t1=new Date().getTime();
+    //CONNECTION.sendMsg({});
+
+
+
 	this.GameStage.Start();
 };

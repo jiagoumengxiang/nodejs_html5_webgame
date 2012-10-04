@@ -16,13 +16,15 @@ CONNECTION.worker.onmessage = function(_data) {
 };
 //JSON->String
 CONNECTION.sendMsg = function(_data) {
-	CONNECTION.worker.postMessage(JSON.stringify(_data));
+	CONNECTION.worker.postMessage({sync:true,data:JSON.stringify(_data)});
 };
 
 CONNECTION.getMsg = function(_fn) {
 	CONNECTION.onmessage = _fn;
 };
-
+CONNECTION.send=function(_data){
+    CONNECTION.worker.postMessage({sync:false,data:JSON.stringify(_data)});
+};
 
 
 

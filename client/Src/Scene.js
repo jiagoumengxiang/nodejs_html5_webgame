@@ -25,21 +25,21 @@ function Stage(_C, _FPS) {
 	function Playing(){
 		var t1 = new Date().getTime();
 		//清空屏幕
-		C.fillStyle = "#FFF";
+		C.fillStyle = "#000";
 		C.fillRect(0, 0, 800, 600);
 		//绘制
 		Scene.Draw(C);
 		//逻辑
 		Scene.Logic();
 		var t2 = new Date().getTime();
-		C.fillStyle = "#000";
+		C.fillStyle = "#FFF";
 		C.fillText(t2 - t1, 780, 10);
 		if ((t2 - t1) < (1000 / FPS)) {
 			//控制FPS
 			TimeoutID = setTimeout(Playing, Math.round(1000 / FPS - (t2 - t1)));
 		} else {
 			//控制FPS
-			Playing();
+			setTimeout(Playing,1);
 		}
 	}
 	this.Start=function(){

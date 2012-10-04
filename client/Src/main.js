@@ -1,5 +1,7 @@
 function MAIN() {
-
+	//事件处理
+	document.body.onkedown=ONKEYDOWN;
+	document.body.onkeyup=ONKEYUP;
 	//网络连接
 	//登陆->显示登陆窗体,处理登陆请求
 	document.getElementById("login").style.display = "block";
@@ -18,7 +20,7 @@ function MAIN() {
 			//开始游戏
 			GameEngin.GameProcess();
 		});
-		CONNECTION.sendMsg({
+		CONNECTION.send({
 			type: "login",
 			data: {
 				name: userName,

@@ -1,6 +1,11 @@
-var gameAction=require("./Action.js");
+var io,gameAction;
 
-exports.connect = function(io) {
+exports.Init=function(_io,_action){
+	io=_io;
+	gameAction=_action;
+};
+
+exports.connect = function() {
 	io.sockets.on('connection', function(_socket) {
 		console.log("connection 启动...........");
 		_socket.on("message", function(_data) {

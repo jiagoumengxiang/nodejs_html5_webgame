@@ -20,7 +20,11 @@ exports.GetUserList=function(){
 	return rtnVal;
 };
 
-
+exports.GetSocket=function(){
+	if(Storage.length>0){
+		return Storage[0].socket;
+	}
+};
 
 
 

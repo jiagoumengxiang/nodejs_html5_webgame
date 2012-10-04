@@ -14,27 +14,24 @@ var message = "";
 socket = socket.on('connect', function() {
 	socket.on('message', function(_data) {
 		postMessage(_data); //将获取到的数据发送会主线程
-		message="";
+		message = "";
 	});
 });
 
 onmessage = function(evt) {
-	message = evt.data; //通过evt.data获得发送来的数据
+	if (evt.data.sync) {
+		message = evt.data.data; //通过evt.data获得发送来的数据
+	}else{
+		socket.emit('message', evt.data.data);
+	}
 };
 
 //与后台的同步
 var sync = function() {
-	if(message.length>0){
-		socket.emit('message',message);
-		message="";
-	}
-	setTimeout(sync,'500');
-};
+		if (message.length > 0) {
+			socket.emit('message', message);
+			message = "";
+		}
+		setTimeout(sync, '500');
+	};
 sync();
-
-
-
-
-
-
-
